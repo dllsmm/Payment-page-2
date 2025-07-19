@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UPI Payment Page</title>
   <style>
     * {
@@ -29,6 +29,7 @@
       width: 100%;
       max-width: 420px;
       text-align: center;
+      position: relative;
     }
 
     h2 {
@@ -44,7 +45,7 @@
       margin-bottom: 15px;
     }
 
-    img {
+    img.qr {
       width: 100%;
       max-width: 220px;
       border-radius: 10px;
@@ -54,7 +55,19 @@
     .upi-id {
       font-weight: bold;
       font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
       margin-bottom: 20px;
+    }
+
+    .payment-icons img {
+      width: 40px;
+      height: 40px;
     }
 
     button {
@@ -78,6 +91,37 @@
       display: none;
     }
 
+    .support-icon {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 55px;
+      height: 55px;
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .footer div {
+      margin-bottom: 6px;
+    }
+
+    .footer a.contact-button {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #00bfff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
     @media (max-width: 480px) {
       h2 {
         font-size: 1.3rem;
@@ -87,6 +131,10 @@
       }
       button {
         width: 100%;
+      }
+      .payment-icons img {
+        width: 30px;
+        height: 30px;
       }
     }
   </style>
@@ -98,22 +146,36 @@
     
     <div class="timer" id="countdown">Time Left: 15:00</div>
     
-    <img src="https://i.ibb.co/SXZQtMR2/image-2.jpg" alt="QR Code">
+    <img src="https://i.ibb.co/SXZQtMR2/image-2.jpg" alt="QR Code" class="qr" />
     
     <div class="upi-id">UPI ID: khalidxaadil@fam</div>
-    
+
+    <div class="payment-icons">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Google_Pay_Logo.svg" alt="GPay" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/PhonePe_Logo.png" alt="PhonePe" />
+      <img src="https://seeklogo.com/images/F/fampay-logo-6B198AE576-seeklogo.com.png" alt="Fampay" />
+    </div>
+
     <button onclick="verifyPayment()">Verify Payment</button>
 
     <div id="paymentMessage">
-      Your payment request added,<br>
-      contact admin via support button.<br>
+      Your payment request added,<br />
+      contact admin via support button.<br />
       They will add your funds.
+    </div>
+
+    <div class="footer">
+      <div>Want to make your payment page?</div>
+      <a href="https://t.me/dllsmm" target="_blank" class="contact-button">Contact</a>
     </div>
   </div>
 
+  <a href="https://t.me/dllsmm" target="_blank">
+    <img src="https://i.ibb.co/gGZCjFM/help-desk.png" alt="Support" class="support-icon" />
+  </a>
+
   <script>
-    // Timer logic
-    let timeLeft = 15 * 60; // 15 minutes in seconds
+    let timeLeft = 15 * 60;
     const countdownEl = document.getElementById("countdown");
 
     const countdown = setInterval(() => {
@@ -132,6 +194,5 @@
       document.getElementById("paymentMessage").style.display = "block";
     }
   </script>
-
 </body>
 </html>
