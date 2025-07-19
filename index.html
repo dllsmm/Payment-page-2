@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UPI Payment Page</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+      color: #333;
+    }
+
+    .timer {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: red;
+      margin-bottom: 15px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+
+    .upi-id {
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #paymentMessage {
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 1.3rem;
+      }
+      .timer {
+        font-size: 1rem;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Make UPI Payment</h2>
+    
+    <div class="timer" id="countdown">Time Left: 15:00</div>
+    
+    <img src="https://i.ibb.co/SXZQtMR2/image-2.jpg" alt="QR Code">
+    
+    <div class="upi-id">UPI ID: khalidxaadil@fam</div>
+    
+    <button onclick="verifyPayment()">Verify Payment</button>
+
+    <div id="paymentMessage">
+      Your payment request added,<br>
+      contact admin via support button.<br>
+      They will add your funds.
+    </div>
+  </div>
+
+  <script>
+    // Timer logic
+    let timeLeft = 15 * 60; // 15 minutes in seconds
+    const countdownEl = document.getElementById("countdown");
+
+    const countdown = setInterval(() => {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      countdownEl.textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      timeLeft--;
+
+      if (timeLeft < 0) {
+        clearInterval(countdown);
+        countdownEl.textContent = "QR expired, refresh the page";
+      }
+    }, 1000);
+
+    function verifyPayment() {
+      document.getElementById("paymentMessage").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
